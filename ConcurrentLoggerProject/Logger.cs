@@ -4,7 +4,7 @@ using System.Threading;
 
 namespace ConcurrentLoggerProject
 {
-    class Logger : ILogger
+    public class Logger : ILogger
     {
         int bufferLimit;
         ILoggerTarget[] targets;

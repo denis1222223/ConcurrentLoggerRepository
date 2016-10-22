@@ -2,7 +2,7 @@
 
 namespace ConcurrentLoggerProject
 {
-    interface ILoggerTarget
+    public interface ILoggerTarget
     {
         void Flush(Log log);
         Task<bool> FlushAsync();

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConcurrentLoggerProject
 {
-    enum LogLevel
+    public enum LogLevel
     {
         Debug,
         Info,
@@ -14,7 +14,7 @@ namespace ConcurrentLoggerProject
         Error
     }
 
-    class Log
+    public class Log
     {
         public LogLevel LogLevel { get; private set; }
         public string Message { get; private set; }
