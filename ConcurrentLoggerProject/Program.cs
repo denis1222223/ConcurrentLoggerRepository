@@ -15,10 +15,11 @@ namespace ConcurrentLoggerProject
             ILoggerTarget[] targets = new ILoggerTarget[] { new TargetConsole(), new TargetTextFile("log.txt") };
             Logger logger = new Logger(5, targets);
 
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 100; i++)
             {
                 logger.Log(new Log(LogLevel.Warning, " event №" + i.ToString()));
             }
+            
             logger.Close();
 
             Console.ReadLine();
