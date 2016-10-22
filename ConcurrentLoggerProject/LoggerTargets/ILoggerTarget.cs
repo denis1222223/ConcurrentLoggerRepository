@@ -4,7 +4,8 @@ namespace ConcurrentLoggerProject
 {
     interface ILoggerTarget
     {
-        bool Flush();
+        void Flush(Log log);
         Task<bool> FlushAsync();
+        void Close();
     }
-}
+} 

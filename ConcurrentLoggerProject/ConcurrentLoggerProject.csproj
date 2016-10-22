@@ -44,8 +44,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ILogger.cs" />
-    <Compile Include="ILoggerTarget.cs" />
+    <Compile Include="Log.cs" />
+    <Compile Include="LoggerTargets\ILoggerTarget.cs" />
     <Compile Include="Logger.cs" />
+    <Compile Include="LoggerTargets\TargetConsole.cs" />
+    <Compile Include="LoggerTargets\TargetTextFile.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
