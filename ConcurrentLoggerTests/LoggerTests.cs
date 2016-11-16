@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Text;
 using ConcurrentLoggerProject;
+using System.IO;
 
 namespace ConcurrentLoggerTests
 {
@@ -11,20 +12,24 @@ namespace ConcurrentLoggerTests
         [TestMethod]
         public void TestMethod_TestOneTarget()
         {
-            int bufferLimit = 1;
-            TargetStringBuilder testTarget = new TargetStringBuilder();
-
+            TargetTest testTarget = new TargetTest();
             StringBuilder stringBuilder = new StringBuilder();
-            ILoggerTarget[] targets = new ILoggerTarget[] { testTarget };
-            Logger logger = new Logger(bufferLimit, targets);
+            ILoggerTarget[] logTarget = new ILoggerTarget[] { testTarget };
+            var logger = new Logger(1, logTarget);
 
             for (int i = 0; i < 1000; i++)
             {
-                stringBuilder.Append(i);
                 logger.Log(new Log(LogLevel.Debug, i.ToString()));
+                stringBuilder.Append(i.ToString());
             }
 
-            CollectionAssert.AreEqual(Encoding.Default.GetBytes(stringBuilder.ToString()), testTarget.GetMessage());
+            var writer = new StreamWriter("test.txt", true);
+            writer.WriteLine(stringBuilder.ToString());
+            writer.WriteLine("-----");
+            writer.WriteLine(testTarget.GetMessage());
+            writer.Close();
+            
+            Assert.AreEqual(stringBuilder.ToString(), testTarget.GetMessage());
             testTarget.Close();
         }
     }

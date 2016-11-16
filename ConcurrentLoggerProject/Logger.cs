@@ -27,9 +27,9 @@ namespace ConcurrentLoggerProject
             logBuffer = new List<Log>(bufferLimit);
         }
 
-        public void Log(Log newLog)
+        public void Log(Log log)
         {
-            logBuffer.Add(newLog);
+            logBuffer.Add(log);
             if (logBuffer.Count == bufferLimit)
             {
                 ThreadPool.QueueUserWorkItem(FlushBuffer, new ThreadInfo { logs = logBuffer, threadId = bufferId++ });

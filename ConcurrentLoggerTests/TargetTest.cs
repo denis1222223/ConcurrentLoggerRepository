@@ -8,28 +8,29 @@ using System.Threading.Tasks;
 
 namespace ConcurrentLoggerTests
 {
-    public class TargetStringBuilder : ILoggerTarget
+    public class TargetTest : ILoggerTarget
     {
         private StringBuilder message = new StringBuilder();
 
-        public void Flush(Log log)
+        public string GetMessage()
         {
-            message.Append(log.Message);
+            return message.ToString();
         }
 
-        public Task<bool> FlushAsync()
+        public bool Flush(Log log)
+        {
+            message.Append(log.Message);
+            return true;
+        }
+
+        public Task<bool> FlushAsync(Log log)
         {
             throw new NotImplementedException();
         }
 
-        public byte[] GetMessage()
-        {
-            return Encoding.Default.GetBytes(message.ToString());
-        }
-
         public void Close()
         {
-            message.Clear();
+            throw new NotImplementedException();
         }
     }
 }

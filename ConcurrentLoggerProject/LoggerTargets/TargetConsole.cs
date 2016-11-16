@@ -9,12 +9,13 @@ namespace ConcurrentLoggerProject.LoggerTargets
     class TargetConsole : ILoggerTarget
     {
 
-        public void Flush(Log log)
+        public bool Flush(Log log)
         {
             Console.WriteLine(log.ToString());
+            return true;
         }
 
-        public Task<bool> FlushAsync()
+        public Task<bool> FlushAsync(Log log)
         {
             throw new NotImplementedException();
         }

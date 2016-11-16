@@ -16,14 +16,16 @@ namespace ConcurrentLoggerProject.LoggerTargets
             writer = new StreamWriter(path, true);
         }
 
-        public void Flush(Log log)
+        public bool Flush(Log log)
         {
             writer.WriteLine(log.ToString());
+            return true;
         }
 
-        public Task<bool> FlushAsync()
+        public async Task<bool> FlushAsync(Log log)
         {
-            throw new NotImplementedException();
+            await writer.WriteLineAsync(log.ToString());
+            return true;
         }
 
         public void Close()
